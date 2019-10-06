@@ -1,10 +1,10 @@
 <h1>Welcome, <%= @user.username %></h1>
-<% @comic_books.each do |comic_book| %>
+<% @comics.each do |comic| %>
 <ul>
-  <li><%= comic_book.publisher %></a></li>
-  <li><%= comic_book.title %></a></li>
-  <li><%= comic_book.volume %></a></li>
-  <li><%= comic_book.year %></a></li>
+  <li><%= comic.publisher %></a></li>
+  <li><%= comic.title %></a></li>
+  <li><%= comic.volume %></a></li>
+  <li><%= comic.year %></a></li>
 </ul>
 <% end %>
 
