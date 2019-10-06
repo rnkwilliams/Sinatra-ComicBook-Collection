@@ -15,7 +15,14 @@ class ComicBooksController < ApplicationController
         end
         @comics = ComicBook.all
         @user = Helpers.current_user(session)
-        erb :'/comic_books/comics'
+        erb :"/comic_books/comics"
+    end
+
+    get '/comics/new' do
+        if !Helpers.is_logged_in?(session)
+            redirect to '/login'
+        end
+            erb :"/comics/new"
     end
 
 end

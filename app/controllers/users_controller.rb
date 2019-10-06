@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   post '/signup' do
     params.each do |label, input|
         if input.empty?
-            flash[:new_user_error] = "Please enter #{label}"
+            flash[:new_user_error] = "Please enter #{label}."
             redirect to '/signup'
         end
      end
