@@ -22,7 +22,24 @@ class ComicBooksController < ApplicationController
         if !Helpers.is_logged_in?(session)
             redirect to '/login'
         end
-            erb :"/comics/new"
+            erb :"/comic_books/new"
     end
+
+    post '/comics' do
+        user = Helpers.current_user(session)
+        params.each do |label, input|
+            if input.empty?
+                flash[:message] = "Please enter the #{label} of your comic book."
+                redirect to '/comics/new'
+            end
+        end
+        comic = ComicBook.create(:title => params["title"], :volume => params["volume"], :publisher => params["publisher"], :year => params["year"], :user_id => user.id)
+
+        redirect to "/comics"
+    end
+
+    
+        
+
 
 end
