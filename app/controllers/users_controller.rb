@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   get '/signup' do
     if Helpers.is_logged_in?(session)
-        redirect to '/comic_books'
+        redirect to '/comics'
     end
 
     erb :"/users/create_user"
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   post '/signup' do
     params.each do |label, input|
         if input.empty?
-            flash[:message] = "Please enter #{label}"
+            flash[:new_user_error] = "Please enter #{label}"
             redirect to '/signup'
         end
      end
@@ -28,12 +28,12 @@ class UsersController < ApplicationController
      user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
      session[:user_id] = user.id
 
-     redirect to '/comic_books'
+     redirect to '/comics'
   end
 
   get '/login' do
     if Helpers.is_logged_in?(session)
-        redirect to '/comic_books'
+        redirect to '/comics'
     else
         erb :"users/login"
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect to '/comic_books'
+        redirect to '/comics'
     else
         flash[:message] = "Incorrect login. Please try again."
         redirect to '/login'

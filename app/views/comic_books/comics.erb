@@ -1,0 +1,12 @@
+<h1>Welcome, <%= @user.username %></h1>
+<% @comic_books.each do |comic_book| %>
+<ul>
+  <li><%= comic_book.publisher %></a></li>
+  <li><%= comic_book.title %></a></li>
+  <li><%= comic_book.volume %></a></li>
+  <li><%= comic_book.year %></a></li>
+</ul>
+<% end %>
+
+<a href="/comic_books/new"><button>New Entry</button></a>
+<a href="/logout"><button>Log Out</button></a>
