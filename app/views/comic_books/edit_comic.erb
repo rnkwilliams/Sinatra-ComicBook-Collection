@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<form action="/comics/<%= comic.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Publisher:</label>
+    <input type="text" name="publisher" id="publisher" value="<%= @comic.publisher %>"><br>
+    <label>Title:</label>
+    <input type="text" name="title" id="title" value="<%= @comic.title %>"><br>
+    <label>Volume:</label>
+    <input type="text" name="volume" id="volume" value="<%= @comic.volume %>"><br>
+    <label>Release Date (Year):</label>
+    <input type="text" name="year" id="year" value="<%= @comic.year %>"><br><br>
+
+    <input type="submit" value="Submit">
+</form>

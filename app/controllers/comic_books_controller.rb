@@ -38,8 +38,26 @@ class ComicBooksController < ApplicationController
         redirect to "/comics"
     end
 
-    
+    get '/comics/:id' do
+        if !Helpers.is_logged_in?(session)
+            redirect to '/login'
+        end
+        @comic = ComicBook.find(params[:id])
+        erb :'comic_books/show_comic'
+    end
         
-
+    get '/comics/:id/edit' do
+        if !Helpers.is_logged_in?(session)
+          redirect to '/login'
+        end
+        @comic = ComicBook.find(params[:id])
+        if Helpers.current_user(session).id != @comic.user_id
+          flash[:message] = "Sorry you can only edit your own comic books"
+          redirect to '/comics'
+        end
+        erb :"comics/edit_comic"
+      end
+  
+      
 
 end

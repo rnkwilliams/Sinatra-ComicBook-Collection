@@ -1,0 +1,10 @@
+<label><strong>Publisher: </strong></label><%= @comic.publisher %><br>
+<label><strong>Title: </strong></label><%= @comic.title %><br>
+<label><strong>Volume: </strong></label><%= @comic.volume %><br>
+<label><strong>Release Date (Year): </strong></label><%= @comic.year %><br>
+<br>
+<a href="/comics/<%= @comic.id %>/edit">Edit Comic Book</a><br><br>
+<form action="/comics/<%= @comic.id %>/delete" method="POST">
+  <input type="submit" value="Delete Comic Book"><br>
+</form>
+<a href="/comics"><button>Back to Comic</button></a>
