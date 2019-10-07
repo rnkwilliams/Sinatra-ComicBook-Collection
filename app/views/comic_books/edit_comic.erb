@@ -2,7 +2,7 @@
   <%= flash[:message] %>
 <% end %>
 
-<form action="/comics/<%= comic.id %>" method="POST">
+<form action="/comics/<%= @comic.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label>Publisher:</label>
     <input type="text" name="publisher" id="publisher" value="<%= @comic.publisher %>"><br>

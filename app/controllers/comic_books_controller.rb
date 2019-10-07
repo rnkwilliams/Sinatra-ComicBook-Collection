@@ -55,9 +55,21 @@ class ComicBooksController < ApplicationController
           flash[:message] = "Sorry you can only edit your own comic books"
           redirect to '/comics'
         end
-        erb :"comics/edit_comic"
+        erb :"comic_books/edit_comic"
       end
   
-      
+    patch '/comics/:id' do
+        comic = ComicBook.find(params[:id])
+        params.each do |label, input|
+            if input.empty?
+                flash[:message] = "Please enter the #{label} of your comic book."
+                redirect to '/comics/#{params[:id]}/edit'
+            end
+        end
+        comic.update(:title => params["title"], :volume => params["volume"], :publisher => params["publisher"], :year => params["year"])
+        comic.save
+    
+        redirect to "/comics/#{comic.id}"
+    end  
 
 end
