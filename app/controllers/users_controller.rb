@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       end
   
   get '/signup' do
-    if Helpers.is_logged_in?(session)
+    if logged_in?
         redirect to '/comics'
     end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if Helpers.is_logged_in?(session)
+    if logged_in?
         redirect to '/comics'
     else
         erb :"users/login"
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    if Helpers.is_logged_in?(session)
+    if logged_in?
         session.clear
         redirect to "/login"
     else
