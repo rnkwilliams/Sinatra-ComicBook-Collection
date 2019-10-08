@@ -10,23 +10,23 @@ class ComicBooksController < ApplicationController
       end
   
     get '/comics' do 
-        if !Helpers.is_logged_in?(session)
+        if !logged_in?(session)
             redirect to '/login'
         end
-        @comics = ComicBook.all
-        @user = Helpers.current_user(session)
+        @user = current_user
+        @comics = @user.comics
         erb :"/comic_books/comics"
     end
 
     get '/comics/new' do
-        if !Helpers.is_logged_in?(session)
+        if !logged_in?
             redirect to '/login'
         end
             erb :"/comic_books/new"
     end
 
     post '/comics' do
-        user = Helpers.current_user(session)
+        user = current_user
         params.each do |label, input|
             if input.empty?
                 flash[:message] = "Please enter the #{label} of your comic book."
@@ -39,7 +39,7 @@ class ComicBooksController < ApplicationController
     end
 
     get '/comics/:id' do
-        if !Helpers.is_logged_in?(session)
+        if !logged_in?
             redirect to '/login'
         end
         @comic = ComicBook.find(params[:id])
@@ -47,11 +47,11 @@ class ComicBooksController < ApplicationController
     end
         
     get '/comics/:id/edit' do
-        if !Helpers.is_logged_in?(session)
+        if logged_in?
           redirect to '/login'
         end
         @comic = ComicBook.find(params[:id])
-        if Helpers.current_user(session).id != @comic.user_id
+        if current_user.id != @comic.user_id
           flash[:wrong_user_edit] = "Sorry you can only edit your own comic book"
           redirect to '/comics'
         end
@@ -73,11 +73,11 @@ class ComicBooksController < ApplicationController
     end
     
     post '/comics/:id/delete' do
-        if !Helpers.is_logged_in?(session)
+        if !logged_in?
           redirect to '/login'
         end
         @comic = ComicBook.find(params[:id])
-        if Helpers.current_user(session).id != @comic.user_id
+        if current_user.id != @comic.user_id
           flash[:wrong_user] = "Sorry you can only delete your own comic book"
           redirect to '/comics'
         end
