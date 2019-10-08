@@ -8,7 +8,7 @@
 <h1>Welcome, <%= @user.username %>!</h1><br>
 <% @comics.each do |comic| %>
 <ul>
-  <li><strong><label>Publisher: </strong><%= comic.publisher %></label></li>
+  <li><a href="/comics/<%= comic.id %>"><strong><label>Publisher: </strong><%= comic.publisher %></label></a></li>
   <li><strong><label>Title: </strong><%= comic.title %></label></li>
   <li><strong><label>Volume: </strong><%= comic.volume %></label></li>
   <li><strong><label>Release Date (Year): </strong><%= comic.year %></label></li>
