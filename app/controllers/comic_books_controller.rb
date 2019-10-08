@@ -10,11 +10,11 @@ class ComicBooksController < ApplicationController
       end
   
     get '/comics' do 
-        if !logged_in?(session)
+        if !logged_in?
             redirect to '/login'
         end
         @user = current_user
-        @comics = @user.comics
+        @comics = @user.comic_books
         erb :"/comic_books/comics"
     end
 
