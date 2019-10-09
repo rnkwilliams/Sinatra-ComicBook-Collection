@@ -47,7 +47,7 @@ class ComicBooksController < ApplicationController
     end
         
     get '/comics/:id/edit' do
-        if logged_in?
+        if !logged_in?
           redirect to '/login'
         end
         @comic = ComicBook.find(params[:id])
@@ -72,7 +72,7 @@ class ComicBooksController < ApplicationController
         redirect to "/comics/#{comic.id}"
     end
     
-    post '/comics/:id/delete' do
+    delete '/comics/:id/delete' do
         if !logged_in?
           redirect to '/login'
         end
