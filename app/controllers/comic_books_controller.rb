@@ -52,7 +52,7 @@ class ComicBooksController < ApplicationController
         end
         @comic = ComicBook.find(params[:id])
         if current_user.id != @comic.user_id
-          flash[:wrong_user_edit] = "Sorry you can only edit your own comic book"
+          flash[:wrong_user_edit] = "Sorry you can only edit your own comic book."
           redirect to '/comics'
         end
         erb :"comic_books/edit_comic"
@@ -62,7 +62,7 @@ class ComicBooksController < ApplicationController
         comic = ComicBook.find(params[:id])
         params.each do |label, input|
             if input.empty?
-                flash[:message] = "Please enter the #{label} of your comic book"
+                flash[:message] = "Please enter the #{label} of your comic book."
                 redirect to '/comics/#{params[:id]}/edit'
             end
         end
@@ -78,7 +78,7 @@ class ComicBooksController < ApplicationController
         end
         @comic = ComicBook.find(params[:id])
         if current_user.id != @comic.user_id
-          flash[:wrong_user] = "Sorry you can only delete your own comic book"
+          flash[:wrong_user] = "Sorry you can only delete your own comic book."
           redirect to '/comics'
         end
         @comic.delete

@@ -1,6 +1,9 @@
 <% if flash.has?(:new_user_error) %>
   <%= flash[:new_user_error] %>
 <% end %>
+<% if flash.has?(:email_taken) %>
+  <%= flash[:email_taken] %>
+<% end %>
 
 <h3>Sign Up</h3>
 <form action="/signup" method="POST">

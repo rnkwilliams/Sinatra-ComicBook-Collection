@@ -24,12 +24,18 @@ class UsersController < ApplicationController
             redirect to '/signup'
         end
      end
-
-     user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
-     session[:user_id] = user.id
+     
+    @user = User.find_by(:email => params[:email])
+      if !@user.nil?
+        flash[:email_taken] = "Email already exists."
+        erb :'users/create_user'
+      else
+        user = User.create(:username => params["username"], :email => params["email"], :password => params["password"])
+        session[:user_id] = user.id
 
      redirect to '/comics'
   end
+end
 
   get '/login' do
     if logged_in?
