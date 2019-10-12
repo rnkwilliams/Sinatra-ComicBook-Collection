@@ -1,9 +1,11 @@
+<div class="error">
 <% if flash.has?(:new_user_error) %>
   <%= flash[:new_user_error] %>
 <% end %>
 <% if flash.has?(:email_taken) %>
   <%= flash[:email_taken] %>
 <% end %>
+</div>
 
 <div class="infopage">
 <h3>Sign Up</h3>

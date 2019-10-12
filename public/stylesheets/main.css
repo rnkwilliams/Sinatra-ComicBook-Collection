@@ -108,6 +108,10 @@
     position:relative;
     top:1px;
   }
+  
+  .error{
+    color: red;
+  }
 }
 
 @media screen and (max-width: 600px) {

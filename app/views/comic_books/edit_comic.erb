@@ -1,6 +1,8 @@
+<div class="error">
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+</div>
 
 <div class="infopage">
 <form action="/comics/<%= @comic.id %>" method="POST">
