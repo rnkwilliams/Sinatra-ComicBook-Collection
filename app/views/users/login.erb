@@ -2,12 +2,14 @@
     <%= flash[:message] %>
 <% end %>
 
-<h3>Log In</h3>
+<div class="infopage">
+<h3>Log In</h3><br>
 <form action="/login" method="POST">
     <label>Username: </label>
     <input type="text" name="username" id="username"><br><br>
     <label>Password: </label>
     <input type="password" name="password" id="password"><br><br>
 
-    <input type="submit" id="submit" name="submit" value="Log In">
+    <input type="submit" id="submit" name="submit" value="Log In" class="button">
 </form>
+</div>

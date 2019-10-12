@@ -5,6 +5,7 @@
   <%= flash[:wrong_user_edit] %>
 <% end %>
 
+<div class="infopage">
 <h1>Welcome, <%= @user.username %>!</h1><br>
 <% @comics.each do |comic| %>
 <ul>
@@ -15,5 +16,6 @@
 </ul><br>
 <% end %>
 
-<a href="/comics/new"><button>New Entry</button></a>
-<a href="/logout"><button>Log Out</button></a>
+<a href="/comics/new"><button class="button">New Entry</button></a>
+<a href="/logout"><button class="button">Log Out</button></a>
+</div>
