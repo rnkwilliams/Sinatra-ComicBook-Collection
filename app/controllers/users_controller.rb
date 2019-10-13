@@ -1,13 +1,6 @@
 require './config/environment'
 
 class UsersController < ApplicationController
-    use Rack::Flash
-    configure do
-        set :public_folder, 'public'
-        set :views, 'app/views'
-        enable :sessions
-        set :session_secret, "secret"
-      end
   
   get '/signup' do
     if logged_in?
