@@ -1,4 +1,5 @@
-<h1><%= @user.username %> Comic Book Collection</h1>
+<div class="infopage">
+<h1><%= @user.username %> Comic Book Collection</h1><br>
 <% @user.comic_books.each do |comic| %>
 <ul>
     <li><label><strong>Publisher: </strong></label><%= comic.publisher %></li>
@@ -7,3 +8,4 @@
     <li><label><strong>Release Date (Year): </strong></label><%= comic.year %></li>  
 </ul><br>
 <% end %>
+</div>

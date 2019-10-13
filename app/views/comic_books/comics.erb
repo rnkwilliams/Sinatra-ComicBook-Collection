@@ -9,6 +9,7 @@
 
 <div class="infopage">
 <h1>Welcome, <%= @user.username %>!</h1><br>
+<h3>Below is a list of everyone's comic books listed for today. Please select your comic book to view, edit or delete.</h3><br>
 <% @comics.each do |comic| %>
 <ul>
   <li><a href="/comics/<%= comic.id %>"><strong><label>Publisher: </strong><%= comic.publisher %></label></a></li>
@@ -20,4 +21,5 @@
 
 <a href="/comics/new"><button class="button">New Entry</button></a>
 <a href="/logout"><button class="button">Log Out</button></a>
+<a href="/profile"><button class="button">My Collection</button></a>
 </div>

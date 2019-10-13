@@ -56,6 +56,13 @@ end
         redirect to '/login'
     end
   end
+  
+  get '/profile' do
+    if logged_in?
+      @user = current_user
+    erb :"users/show"
+    end
+  end
 
   get '/users/:slug' do
     slug = params[:slug]
