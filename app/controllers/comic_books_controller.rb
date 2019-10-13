@@ -13,8 +13,8 @@ class ComicBooksController < ApplicationController
         if !logged_in?
             redirect to '/login'
         end
+        @comics = ComicBook.all
         @user = current_user
-        @comics = @user.comic_books
         erb :"/comic_books/comics"
     end
 

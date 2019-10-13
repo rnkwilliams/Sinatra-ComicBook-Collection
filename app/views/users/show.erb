@@ -1,9 +1,9 @@
-<h1><%= @user.username %>'s Collection of Comic Books</h1>
-<% @user.comics.each do |comic|
+<h1><%= @user.username %> Comic Book Collection</h1>
+<% @user.comic_books.each do |comic| %>
 <ul>
-    <li><%= comic.publisher %></li>
-    <li><%= comic.title %></li>
-    <li><%= comic.volume %></li>
-    <li><%= comic.year %></li>  
-</ul>
+    <li><label><strong>Publisher: </strong></label><%= comic.publisher %></li>
+    <li><label><strong>Title: </strong></label><%= comic.title %></li>
+    <li><label><strong>Volume: </strong></label><%= comic.volume %></li>
+    <li><label><strong>Release Date (Year): </strong></label><%= comic.year %></li>  
+</ul><br>
 <% end %>
