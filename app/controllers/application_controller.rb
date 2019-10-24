@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
         enable :sessions
         set :session_secret, "secret"
       end
-  
+
   get "/" do
     erb :welcome
   end
@@ -22,6 +22,12 @@ class ApplicationController < Sinatra::Base
 
     def logged_in?
         !!session[:user_id]
+    end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+          redirect to '/login'
+      end
     end
   end
 end

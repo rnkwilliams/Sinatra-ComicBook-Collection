@@ -1,11 +1,9 @@
 require './config/environment'
 
 class ComicBooksController < ApplicationController
-  
-    get '/comics' do 
-        if !logged_in?
-            redirect to '/login'
-        end
+
+    get '/comics' do
+        redirect_if_not_logged_in
         @comics = ComicBook.all
         @user = current_user
         erb :"/comic_books/comics"
@@ -38,7 +36,7 @@ class ComicBooksController < ApplicationController
         @comic = ComicBook.find(params[:id])
         erb :'comic_books/show_comic'
     end
-        
+
     get '/comics/:id/edit' do
         if !logged_in?
           redirect to '/login'
@@ -50,7 +48,7 @@ class ComicBooksController < ApplicationController
         end
         erb :"comic_books/edit_comic"
       end
-  
+
     patch '/comics/:id' do
         comic = ComicBook.find(params[:id])
         params.each do |label, input|
@@ -59,12 +57,14 @@ class ComicBooksController < ApplicationController
                 redirect to '/comics/#{params[:id]}/edit'
             end
         end
+        if current_user.id != @comic.user_id
         comic.update(:title => params["title"], :volume => params["volume"], :publisher => params["publisher"], :year => params["year"])
         comic.save
-    
+      end
+
         redirect to "/comics/#{comic.id}"
     end
-    
+
     delete '/comics/:id/delete' do
         if !logged_in?
           redirect to '/login'

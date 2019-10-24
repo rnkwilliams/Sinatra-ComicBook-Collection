@@ -1,7 +1,7 @@
 require './config/environment'
 
 class UsersController < ApplicationController
-  
+
   get '/signup' do
     if logged_in?
         redirect to '/comics'
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     erb :"/users/create_user"
   end
-  
+
   post '/signup' do
     params.each do |label, input|
         if input.empty?
@@ -17,8 +17,8 @@ class UsersController < ApplicationController
             redirect to '/signup'
         end
      end
-     
-    @user = User.find_by(:email => params[:email])
+
+    @user = User.find_by(:username => params[:username])
       if !@user.nil?
         flash[:email_taken] = "Email already exists."
         erb :'users/create_user'
@@ -49,7 +49,7 @@ end
         redirect to '/login'
     end
   end
-  
+
   get '/profile' do
     if logged_in?
       @user = current_user

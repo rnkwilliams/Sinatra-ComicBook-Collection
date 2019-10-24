@@ -4,10 +4,14 @@
 <label><strong>Volume: </strong></label><%= @comic.volume %><br>
 <label><strong>Release Date (Year): </strong></label><%= @comic.year %><br>
 <br>
+
+<% if current_user.id == @comic.user_id %>
 <a href="/comics/<%= @comic.id %>/edit" class="button">Edit Comic Book</a><br><br>
 <form action="/comics/<%= @comic.id %>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Comic Book" class="button">
 </form><br>
+<% end %>
+
 <a href="/comics"><button class="button">Back to Comics</button></a>
 </div>
