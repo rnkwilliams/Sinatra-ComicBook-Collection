@@ -10,10 +10,8 @@ class ComicBooksController < ApplicationController
     end
 
     get '/comics/new' do
-        if !logged_in?
-            redirect to '/login'
-        end
-            erb :"/comic_books/new"
+        redirect_if_not_logged_in
+        erb :"/comic_books/new"
     end
 
     post '/comics' do
@@ -30,17 +28,13 @@ class ComicBooksController < ApplicationController
     end
 
     get '/comics/:id' do
-        if !logged_in?
-            redirect to '/login'
-        end
+        redirect_if_not_logged_in
         @comic = ComicBook.find(params[:id])
         erb :'comic_books/show_comic'
     end
 
     get '/comics/:id/edit' do
-        if !logged_in?
-          redirect to '/login'
-        end
+        redirect_if_not_logged_in
         @comic = ComicBook.find(params[:id])
         if current_user.id != @comic.user_id
           flash[:wrong_user_edit] = "Sorry you can only edit your own comic book."
@@ -66,9 +60,7 @@ class ComicBooksController < ApplicationController
     end
 
     delete '/comics/:id/delete' do
-        if !logged_in?
-          redirect to '/login'
-        end
+        redirect_if_not_logged_in
         @comic = ComicBook.find(params[:id])
         if current_user.id != @comic.user_id
           flash[:wrong_user] = "Sorry you can only delete your own comic book."
@@ -76,5 +68,5 @@ class ComicBooksController < ApplicationController
         end
         @comic.delete
         redirect to '/comics'
-      end
+   end
 end

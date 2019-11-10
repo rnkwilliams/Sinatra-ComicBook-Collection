@@ -54,6 +54,8 @@ end
     if logged_in?
       @user = current_user
     erb :"users/show"
+    else
+      redirect to '/login'
     end
   end
 

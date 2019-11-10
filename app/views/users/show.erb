@@ -2,10 +2,10 @@
 <h1><%= @user.username %> Comic Book Collection</h1><br>
 <% @user.comic_books.each do |comic| %>
 <ul>
-    <li><label><strong>Publisher: </strong></label><%= comic.publisher %></li>
+    <li><a href="/comics/<%= comic.id %>"><label><strong>Publisher: </strong></label><%= comic.publisher %></a></li>
     <li><label><strong>Title: </strong></label><%= comic.title %></li>
     <li><label><strong>Volume: </strong></label><%= comic.volume %></li>
-    <li><label><strong>Release Date (Year): </strong></label><%= comic.year %></li>  
+    <li><label><strong>Release Date (Year): </strong></label><%= comic.year %></li>
 </ul><br>
 <% end %>
 
