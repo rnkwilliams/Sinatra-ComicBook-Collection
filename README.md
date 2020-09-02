@@ -1,6 +1,6 @@
 
 # Sinatra-ComicBook-Collection
-This app uses Sinatra-Activecord and MVC model to create a comic book collection using CRUD.
+A community-based platform that allows users to share and track their comic book collections using CRUD, Sinatra-ActiveRecord, and the Ruby programming language.
 
 ## Usage
 
